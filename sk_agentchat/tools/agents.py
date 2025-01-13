@@ -34,7 +34,6 @@ def create_kernel_with_chat_completion(
     kernel = Kernel()
     kernel.add_service(
         azure_chat_completion_service.create_chat_completion(service_id=service_id),
-        overwrite=True,
     )
     return kernel
 

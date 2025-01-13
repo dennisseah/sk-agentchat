@@ -25,17 +25,6 @@ from sk_agentchat.tools.functions import (
 )
 
 
-def generate_prompt(user_input: str) -> str:
-    return (
-        "You are a helpful bank customer agent, collaborating with other"
-        " product agents. You need to get the customer bank account ID first."
-        " Use the provided tools to progress towards answering the question."
-        " If you are unable to fully answer, that's OK, another assistant with"
-        " different tools will help where you left off. Execute what you can to"
-        f" make progress.\nHere is the request:\n{user_input}"
-    )
-
-
 async def main():
     agent_customer = create_customer_agent()
     agent_saving_account = create_saving_account_agent()
@@ -68,13 +57,13 @@ async def main():
     )
 
     user_input = "Get the investment and saving account balance."
-    while not chat.is_complete:
-        await chat.add_chat_message(
-            ChatMessageContent(role=AuthorRole.USER, content=user_input)
-        )
 
-        async for response in chat.invoke():
-            print(f"# {response.role} - {response.name or '*'}: '{response.content}'")
+    # this can be a while loop to get user input
+    await chat.add_chat_message(
+        ChatMessageContent(role=AuthorRole.USER, content=user_input)
+    )
+    async for response in chat.invoke():
+        print(f"# {response.role} - {response.name or '*'}: '{response.content}'")
 
 
 if __name__ == "__main__":
