@@ -1,0 +1,14 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "test",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "sk_agentchat/main.py",
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "env": { "PYTHONPATH": "${workspaceRoot}" }
+    }
+  ]
+}
